@@ -1,174 +1,145 @@
-### 1\. `Layout` 컴포넌트 (`.tsx`)
+# 투두 리스트 - VoiceOver Focus Movement Demo 개선
 
-`children` prop에 대한 타입을 명시해 줍니다. 리액트 컴포넌트를 자식으로 받기 때문에 `React.ReactNode` 타입을 사용합니다.
+## 🎯 현재 페이지의 목적
+**VoiceOver Focus Movement Demo** - VoiceOver 사용자가 각 접근성 레벨에서 제품 카드들을 탐색할 때 포커스 이동의 차이를 시연하는 데모
 
-💻 **`components/Layout.tsx`**
+### 📋 현재 구조
+- **3개의 접근성 레벨 탭**:
+  - No Accessibility (none)
+  - With Role Text (role-text)
+  - With Aria Label (aria-label)
+- **각 탭에서 제품 목록 표시**하여 VoiceOver가 각 레벨에서 어떻게 읽는지 시연
 
-```tsx
-import React from 'react';
-import Header from './Header';
+## 🚀 구현 항목
 
-// children prop의 타입을 지정합니다.
-type LayoutProps = {
-  children: React.ReactNode;
-};
+### 1. 제품 카드 정보 완성 ✅ **구현 대상**
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      <main>
-        {children}
-      </main>
-    </div>
-  );
-};
+#### 1.1 ProductCard 컴포넌트 정보 추가
+- **목적**: 투두 데이터의 모든 정보를 표시하여 더 풍부한 데모 제공
+- **구현 위치**: `client/src/components/ProductCard.tsx` (기존 파일 수정)
+- **추가 표시 정보**:
+  - 할인율 표시 (빨간색 배지)
+  - 재고 상태 표시 (재고 있음/없음)
+  - 구매수 표시
+  - 카테고리 표시
+  - 정가/할인가 비교 표시
+- **VoiceOver 시연 효과**: 더 많은 정보를 읽어주어 접근성 차이를 더 명확하게 보여줌
+- **예상 소요 시간**: 3-4시간
 
-export default Layout;
-```
+## ❌ 구현하지 않을 항목들
 
------
+### 2. 접근성 시연 개선 ❌ **구현하지 않음**
 
-### 2\. `Header` 컴포넌트 (`.tsx`)
+#### 2.1 접근성 레벨별 설명 개선
+- **목적**: 각 레벨의 차이점을 더 명확하게 설명
+- **구현 위치**: `client/src/components/ProductList.tsx` (기존 파일 수정)
+- **개선 내용**:
+  - 각 레벨에서 VoiceOver가 어떻게 읽는지 상세 설명
+  - 실제 테스트 시나리오 제시
+  - 예상되는 차이점 명시
+- **예상 소요 시간**: 2-3시간
+- **상태**: ❌ 구현하지 않음
 
-이 컴포넌트는 별도의 props를 받지 않지만, `React.FC` (Functional Component) 타입을 명시하여 컴포넌트임을 명확히 합니다. `useState`의 타입은 타입스크립트가 `boolean`으로 잘 추론하므로 명시적으로 선언할 필요는 없습니다.
+#### 2.2 접근성 차이점 시각적 표시
+- **목적**: 각 레벨의 차이점을 시각적으로도 보여주기
+- **구현 위치**: `client/src/components/ProductCard.tsx` (기존 파일 수정)
+- **개선 내용**:
+  - 각 레벨별로 다른 시각적 표시 (예: 테두리 색상, 아이콘)
+  - 접근성 레벨 표시 배지
+  - 현재 적용된 접근성 기법 표시
+- **예상 소요 시간**: 2-3시간
+- **상태**: ❌ 구현하지 않음
 
-💻 **`components/Header.tsx`**
+### 3. 데모 설명 개선 ❌ **구현하지 않음**
 
-```tsx
-import React, { useState } from 'react';
+#### 3.1 메인 페이지 설명 개선
+- **목적**: 사용자가 데모의 목적과 방법을 더 쉽게 이해
+- **구현 위치**: `client/src/pages/DemoPage.tsx` (기존 파일 수정)
+- **개선 내용**:
+  - VoiceOver 설정 방법 상세 안내
+  - 각 탭의 목적과 차이점 설명
+  - 테스트 시나리오 제시
+  - 예상 결과 설명
+- **예상 소요 시간**: 2-3시간
+- **상태**: ❌ 구현하지 않음
 
-const Header: React.FC = () => {
-  // const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  // 위와 같이 타입을 명시할 수 있지만, TypeScript가 boolean으로 타입을 추론합니다.
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+#### 3.2 VoiceOver 테스트 가이드 추가
+- **목적**: 실제 VoiceOver 테스트 방법 안내
+- **구현 위치**: `client/src/components/VoiceOverGuide.tsx` (새로 생성)
+- **기능**:
+  - VoiceOver 활성화 방법
+  - 각 탭에서 테스트할 내용
+  - 예상되는 차이점 설명
+  - 문제 해결 방법
+- **예상 소요 시간**: 3-4시간
+- **상태**: ❌ 구현하지 않음
 
-  const menuItems: string[] = ['데모 1', '데모 2', '소개'];
+### 4. 사용자 경험 개선 ❌ **구현하지 않음**
 
-  return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="container mx-auto flex items-center justify-between p-4">
-        <h1 className="text-2xl font-bold text-gray-800">
-          웹 접근성 데모
-        </h1>
+#### 4.1 탭 전환 시 접근성 레벨 설명
+- **목적**: 탭 전환 시 현재 레벨의 특징을 즉시 알려주기
+- **구현 위치**: `client/src/components/TabContainer.tsx` (기존 파일 수정)
+- **기능**:
+  - 탭 전환 시 현재 레벨 설명 표시
+  - VoiceOver가 읽어줄 내용 미리보기
+  - 테스트 팁 제공
+- **예상 소요 시간**: 2-3시간
+- **상태**: ❌ 구현하지 않음
 
-        <nav className="hidden md:flex space-x-6">
-          {menuItems.map((item) => (
-            <a
-              key={item}
-              href="#"
-              className="text-gray-600 hover:text-blue-600 transition-colors"
-            >
-              {item}
-            </a>
-          ))}
-        </nav>
+#### 4.2 접근성 상태 표시
+- **목적**: 현재 적용된 접근성 레벨을 명확하게 표시
+- **구현 위치**: `client/src/components/AccessibilityStatus.tsx` (새로 생성)
+- **기능**:
+  - 현재 접근성 레벨 표시
+  - 적용된 ARIA 속성 설명
+  - VoiceOver 테스트 상태 표시
+- **예상 소요 시간**: 2-3시간
+- **상태**: ❌ 구현하지 않음
 
-        <div className="md:hidden">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-gray-600 focus:outline-none"
-            aria-label="메뉴 열기"
-            aria-expanded={isMenuOpen}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
-              ></path>
-            </svg>
-          </button>
-        </div>
-      </div>
+### 5. 데모 데이터 활용 ❌ **구현하지 않음**
 
-      {isMenuOpen && (
-        <nav className="md:hidden bg-white border-t border-gray-200">
-          <div className="flex flex-col items-center p-4 space-y-4">
-            {menuItems.map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="block text-gray-600 hover:text-blue-600 w-full text-center"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-        </nav>
-      )}
-    </header>
-  );
-};
+#### 5.1 제품 정보 최적화
+- **목적**: 데모 목적에 맞게 제품 정보 최적화
+- **구현 위치**: `client/src/components/ProductCard.tsx` (기존 파일 수정)
+- **개선 내용**:
+  - 접근성 시연에 적합한 제품 정보 선택
+  - 각 레벨별로 다른 정보 표시 전략
+  - VoiceOver 읽기 순서 최적화
+- **예상 소요 시간**: 2-3시간
+- **상태**: ❌ 구현하지 않음
 
-export default Header;
-```
+## 📋 구현 순서
 
------
+### Phase 1: 제품 카드 정보 완성 (3-4시간)
+1. ProductCard 컴포넌트 정보 추가
+   - 할인율 표시 (빨간색 배지)
+   - 재고 상태 표시 (재고 있음/없음)
+   - 구매수 표시
+   - 카테고리 표시
+   - 정가/할인가 비교 표시
 
-### 3\. `DemoPage` 컴포넌트 (`.tsx`)
+## 🎯 총 예상 소요 시간
+- **구현 대상**: 3-4시간
+- **총합**: 3-4시간 (약 0.5-1일)
 
-마찬가지로 `React.FC`를 사용하여 타입스크립트 컴포넌트로 만듭니다.
+## 📝 참고사항
 
-💻 **`pages/DemoPage.tsx`**
+### VoiceOver Focus Movement Demo의 핵심 목적
+- VoiceOver 사용자가 각 접근성 레벨에서 제품 카드들을 탐색할 때 포커스 이동의 차이를 시연
+- 접근성 구현의 효과를 실제로 보여주는 데모
+- 개발자와 디자이너가 접근성의 중요성을 이해할 수 있도록 도움
 
-```tsx
-import React from 'react';
+### 접근성 레벨별 차이점
+- **none**: 각 요소가 개별적으로 읽힘 (포커스 분리 현상)
+- **role-text**: 요소들이 하나의 블록으로 읽힘
+- **aria-label**: 모든 내용이 aria-label로 읽힘
 
-const DemoPage: React.FC = () => {
-  return (
-    <div className="container mx-auto p-4 md:p-8">
-      <div className="bg-white p-6 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold mb-4 border-b pb-2">
-          VoiceOver 포커스 분리 현상 데모
-        </h2>
-        <p className="text-gray-700 leading-relaxed">
-          이 영역에 iOS VoiceOver에서 `<a>` 태그 내부에 여러 스타일(e.g., `<strong>`, `<span>`)을 가진 자식 요소가 있을 때, 포커스가 분리되어 각 요소별로 읽어주는 현상을 재현하는 데모 콘텐츠가 위치할 예정입니다.
-        </p>
-        
-        <div className="mt-8 border-t pt-6">
-          <p className="text-lg font-semibold">데모 영역</p>
-          <div className="mt-4 p-4 border rounded">
-            (여기에 실제 데모 UI를 구현합니다.)
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+### 현재 누락된 정보들
+- 제품 카드의 상세 정보 (할인율, 재고, 구매수, 카테고리 등)
+- 각 접근성 레벨의 차이점 설명
+- VoiceOver 테스트 가이드
+- 시각적 접근성 표시
 
-export default DemoPage;
-```
-
------
-
-### 4\. `App.tsx` (조합 및 사용법)
-
-최상위 컴포넌트 역시 `React.FC`를 적용합니다.
-
-💻 **`App.tsx`**
-
-```tsx
-import React from 'react';
-import Layout from './components/Layout';
-import DemoPage from './pages/DemoPage';
-
-const App: React.FC = () => {
-  return (
-    <Layout>
-      <DemoPage />
-    </Layout>
-  );
-}
-
-export default App;
-```
-
-이제 이 코드들을 개발자에게 전달하시면 타입스크립트 환경에서 바로 작업을 시작할 수 있을 겁니다.
+### 구현 범위
+- ✅ **구현**: 제품 카드 정보 완성 (1번 항목만)
+- ❌ **구현하지 않음**: 2, 3, 4, 5번 항목들
