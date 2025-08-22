@@ -13,8 +13,9 @@ type AriaModalTestPageProps = {
 const AriaModalTestPage: React.FC<AriaModalTestPageProps> = ({ 
   title = "Aria Modal True Test" 
 }) => {
-  // State for modal visibility
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // State for modal visibility and animations
+  const [isModalOpen, setIsModalOpen] = useState(false); // Controls modal display and animations
+  const [isAnimating, setIsAnimating] = useState(false); // Prevents multiple animation triggers
   const [, setLocation] = useLocation();
   const maybeLaterButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -22,8 +23,11 @@ const AriaModalTestPage: React.FC<AriaModalTestPageProps> = ({
   useEffect(() => {
     console.log("AriaModalTestPage: Setting document title to:", title);
     document.title = title;
-    // Open modal automatically when page loads
-    setIsModalOpen(true);
+    
+    // Open modal automatically when page loads with smooth animation (display-based)
+    setTimeout(() => {
+      setIsModalOpen(true); // Show modal with display: flex + animations
+    }, 10);
   }, [title]);
 
   // Focus on Maybe Later button when modal opens
@@ -36,9 +40,30 @@ const AriaModalTestPage: React.FC<AriaModalTestPageProps> = ({
     }
   }, [isModalOpen]);
 
-  // Handle modal close (stays on current page)
+  // Handle modal open with smooth animation (display-based)
+  const handleModalOpen = () => {
+    if (isAnimating) return; // Prevent multiple triggers during animation
+    
+    setIsAnimating(true);
+    setIsModalOpen(true); // Show modal with display: flex + animations
+    
+    // Reset animation state after animation completes
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  // Handle modal close with fade out animation (display-based)
   const handleModalClose = () => {
-    setIsModalOpen(false);
+    if (isAnimating) return; // Prevent multiple triggers during animation
+    
+    setIsAnimating(true);
+    setIsModalOpen(false); // Hide modal with display: none + close animations
+    
+    // Reset animation state after animation completes
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 300);
   };
 
   // Handle navigation back to home (separate function)
@@ -48,14 +73,19 @@ const AriaModalTestPage: React.FC<AriaModalTestPageProps> = ({
 
   return (
     <>
-      {/* Advertisement Modal using React Portal */}
-      {isModalOpen && createPortal(
+      {/* Advertisement Modal using React Portal - Always in DOM */}
+      {createPortal(
         <div 
-          className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4 animate-fadeIn"
+          className={`fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center p-4 ${
+            isModalOpen ? 'animate-fadeIn' : 'animate-fadeOut'
+          }`}
+          style={{ display: isModalOpen ? 'flex' : 'none' }}
           onClick={handleModalClose}
         >
           <div 
-            className="bg-white rounded-lg shadow-lg w-full max-w-[600px] mx-auto transform transition-all duration-300 ease-out animate-slideIn"
+            className={`bg-white rounded-lg shadow-lg w-full max-w-[600px] mx-auto transform transition-all duration-300 ease-out ${
+              isModalOpen ? 'animate-slideIn' : 'animate-slideOut'
+            }`}
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
@@ -196,7 +226,7 @@ const AriaModalTestPage: React.FC<AriaModalTestPageProps> = ({
                 {/* Action buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
                   <Button
-                    onClick={() => setIsModalOpen(true)}
+                    onClick={handleModalOpen}
                     className="bg-blue-600 hover:bg-blue-700"
                   >
                     🎯 Show Advertisement Modal Again
