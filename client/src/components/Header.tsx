@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [location] = useLocation();
 
-  const menuItems: string[] = ['VoiceOver Focus Movement Demo'];
+  const menuItems = [
+    { title: 'VoiceOver Focus Movement Demo', href: '/' },
+    { title: 'aria-modal true test', href: '/aria-modal-test' }
+  ];
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
@@ -14,16 +19,21 @@ const Header: React.FC = () => {
         </h1>
 
         <nav className="hidden md:flex space-x-6">
-          {menuItems.map((item) => (
-            <a
-              key={item}
-              href="#"
-              className="text-blue-600 font-medium transition-colors"
-              aria-current="page"
-            >
-              {item}
-            </a>
-          ))}
+          {menuItems.map((item) => {
+            const isCurrentPage = location === item.href;
+            return (
+              <Link
+                key={item.title}
+                href={item.href}
+                className={`font-medium transition-colors hover:text-blue-800 ${
+                  isCurrentPage ? 'text-blue-800 font-semibold' : 'text-blue-600'
+                }`}
+                aria-current={isCurrentPage ? 'page' : undefined}
+              >
+                {item.title}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="md:hidden">
@@ -56,16 +66,22 @@ const Header: React.FC = () => {
       {isMenuOpen && (
         <nav className="md:hidden bg-white border-t border-gray-200">
           <div className="flex flex-col items-center p-4 space-y-4">
-            {menuItems.map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="block text-blue-600 font-medium w-full text-center"
-                aria-current="page"
-              >
-                {item}
-              </a>
-            ))}
+            {menuItems.map((item) => {
+              const isCurrentPage = location === item.href;
+              return (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className={`block font-medium w-full text-center hover:text-blue-800 ${
+                    isCurrentPage ? 'text-blue-800 font-semibold' : 'text-blue-600'
+                  }`}
+                  aria-current={isCurrentPage ? 'page' : undefined}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.title}
+                </Link>
+              );
+            })}
           </div>
         </nav>
       )}
