@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Layout from "@/components/Layout";
 import DemoPage from "@/pages/DemoPage";
 import AriaModalTestPage from "@/pages/AriaModalTestPage";
+import TabAndRadioPage from "@/pages/TabAndRadioPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -13,6 +14,7 @@ function Router() {
     <Switch>
       <Route path="/" component={() => <DemoPage title="VoiceOver Focus Movement Demo" />} />
       <Route path="/aria-modal-test" component={() => <AriaModalTestPage title="Aria Modal True Test" />} />
+      <Route path="/tab-radio" component={() => <TabAndRadioPage title="Tab & Radio Demo" />} />
       <Route component={NotFound} />
     </Switch>
   );

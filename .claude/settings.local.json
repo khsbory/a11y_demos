@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__git-local__git_set_working_dir",
+      "mcp__git-local__git_status",
+      "mcp__git-local__git_pull",
+      "Bash(npx tsx:*)",
+      "mcp__git-local__git_diff",
+      "mcp__git-local__git_add"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
