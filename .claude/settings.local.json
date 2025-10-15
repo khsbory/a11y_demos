@@ -6,7 +6,9 @@
       "mcp__git-local__git_pull",
       "Bash(npx tsx:*)",
       "mcp__git-local__git_diff",
-      "mcp__git-local__git_add"
+      "mcp__git-local__git_add",
+      "mcp__git-local__git_commit",
+      "mcp__git-local__git_push"
     ],
     "deny": [],
     "ask": []
