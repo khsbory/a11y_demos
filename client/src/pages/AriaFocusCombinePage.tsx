@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import TabContainer from '@/components/TabContainer';
 import PageTitle from '@/components/PageTitle';
 
 // Type definition for AriaFocusCombinePage props
@@ -27,6 +28,91 @@ const AriaFocusCombinePage: React.FC<AriaFocusCombinePageProps> = ({ title = "Ar
     document.title = title;
   }, [title]);
 
+  // Define tabs for TabContainer
+  const tabs = [
+    {
+      id: 'custom',
+      label: 'Custom Grid',
+      content: (
+        <div>
+          <PageTitle level={2} className="mb-4">Transaction History (Custom Grid)</PageTitle>
+          
+          {/* Transaction Grid */}
+          <div className="space-y-2">
+            {transactions.map((transaction) => (
+              <div 
+                key={transaction.id}
+                className="grid grid-cols-4 gap-4 p-3 rounded-lg hover:bg-gray-50 border border-gray-100"
+              >
+                <div className="flex items-center text-sm text-gray-600">
+                  {transaction.date}
+                </div>
+                <div className="flex items-center">
+                  <span className={`px-2 py-1 rounded text-sm font-medium ${
+                    transaction.type === 'deposit' 
+                      ? 'bg-green-100 text-green-800' 
+                      : 'bg-red-100 text-red-800'
+                  }`}>
+                    {transaction.type === 'deposit' ? 'Deposit' : 'Withdrawal'}
+                  </span>
+                </div>
+                <div className={`flex items-center justify-end font-medium text-sm ${
+                  transaction.type === 'deposit' ? 'text-green-600' : 'text-red-600'
+                }`}>
+                  {transaction.type === 'deposit' ? '+' : '-'}${transaction.amount.toFixed(2)}
+                </div>
+                <div className="flex items-center justify-end font-semibold text-gray-900 bg-gray-50 px-2 py-1 rounded">
+                  ${transaction.balance.toFixed(2)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'aria',
+      label: 'ARIA Table',
+      content: (
+        <div>
+          <PageTitle level={2} className="mb-4">Transaction History (ARIA Table)</PageTitle>
+          
+          {/* Custom Grid Implementation with ARIA Table Roles */}
+          <div className="space-y-2" role="table" aria-label="Transaction History">
+            {transactions.map((transaction) => (
+              <div 
+                key={transaction.id}
+                className="grid grid-cols-4 gap-4 p-3 rounded-lg hover:bg-gray-50 border border-gray-100"
+                role="row"
+              >
+                <div className="flex items-center text-sm text-gray-600" role="gridcell">
+                  {transaction.date}
+                </div>
+                <div className="flex items-center" role="gridcell">
+                  <span className={`px-2 py-1 rounded text-sm font-medium ${
+                    transaction.type === 'deposit' 
+                      ? 'bg-green-100 text-green-800' 
+                      : 'bg-red-100 text-red-800'
+                  }`}>
+                    {transaction.type === 'deposit' ? 'Deposit' : 'Withdrawal'}
+                  </span>
+                </div>
+                <div className={`flex items-center justify-end font-medium text-sm ${
+                  transaction.type === 'deposit' ? 'text-green-600' : 'text-red-600'
+                }`} role="gridcell">
+                  {transaction.type === 'deposit' ? '+' : '-'}${transaction.amount.toFixed(2)}
+                </div>
+                <div className="flex items-center justify-end font-semibold text-gray-900 bg-gray-50 px-2 py-1 rounded" role="gridcell">
+                  ${transaction.balance.toFixed(2)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+  ];
+
   return (
     <div className="container mx-auto p-4 md:p-8">
       <Card className="shadow-lg">
@@ -36,40 +122,13 @@ const AriaFocusCombinePage: React.FC<AriaFocusCombinePageProps> = ({ title = "Ar
           </PageTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Transaction History Grid */}
           <div className="border-t pt-6">
-            <PageTitle level={2} className="mb-4">Transaction History</PageTitle>
-            
-            {/* Transaction Grid */}
-            <div className="space-y-2">
-              {transactions.map((transaction) => (
-                <div 
-                  key={transaction.id}
-                  className="grid grid-cols-4 gap-4 p-3 rounded-lg hover:bg-gray-50 border border-gray-100"
-                >
-                  <div className="flex items-center text-sm text-gray-600">
-                    {transaction.date}
-                  </div>
-                  <div className="flex items-center">
-                    <span className={`px-2 py-1 rounded text-sm font-medium ${
-                      transaction.type === 'deposit' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-red-100 text-red-800'
-                    }`}>
-                      {transaction.type === 'deposit' ? 'Deposit' : 'Withdrawal'}
-                    </span>
-                  </div>
-                  <div className={`flex items-center justify-end font-medium text-sm ${
-                    transaction.type === 'deposit' ? 'text-green-600' : 'text-red-600'
-                  }`}>
-                    {transaction.type === 'deposit' ? '+' : '-'}${transaction.amount.toFixed(2)}
-                  </div>
-                  <div className="flex items-center justify-end font-semibold text-gray-900 bg-gray-50 px-2 py-1 rounded">
-                    ${transaction.balance.toFixed(2)}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <PageTitle level={3} className="mb-4">View Options</PageTitle>
+            <TabContainer 
+              tabs={tabs}
+              defaultActiveTab="custom"
+              onTabChange={(tabId) => console.log('Active tab changed to:', tabId)}
+            />
           </div>
         </CardContent>
       </Card>
