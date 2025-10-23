@@ -23,45 +23,55 @@ type WithAriaLabelContentProps = {
   onAddMessage: () => void;
 };
 
-const WithAriaLabelContent = memo<WithAriaLabelContentProps>(({ messages, buttonRef, onAddMessage }) => (
-  <div className="relative pb-20">
-    <div className="space-y-3 p-4 min-h-[300px]">
-      {messages.length === 0 && (
-        <p className="text-gray-400 text-center py-8">No messages yet. Click the button below to add messages.</p>
-      )}
-      {messages.map((message) => (
-        <div
-          key={message.id}
-          role="alert"
-          className={`p-4 rounded-lg ${
-            message.isAgent
-              ? 'bg-blue-100 text-blue-900 ml-auto max-w-[80%]'
-              : 'bg-gray-100 text-gray-900 mr-auto max-w-[80%]'
-          }`}
-        >
+const WithAriaLabelContent = memo<WithAriaLabelContentProps>(({ messages, buttonRef, onAddMessage }) => {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Auto scroll to bottom when new message is added
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  return (
+    <div className="relative h-[calc(100vh-300px)]">
+      <div className="space-y-3 p-4 h-full overflow-y-auto pb-24">
+        {messages.length === 0 && (
+          <p className="text-gray-400 text-center py-8">No messages yet. Click the button below to add messages.</p>
+        )}
+        {messages.map((message) => (
           <div
-            role="heading"
-            aria-level={2}
-            aria-label={`Message ${message.id} - ${message.isAgent ? 'Agent Message' : 'Customer Message'}`}
+            key={message.id}
+            role="alert"
+            className={`p-4 rounded-lg ${
+              message.isAgent
+                ? 'bg-blue-100 text-blue-900 ml-auto max-w-[80%]'
+                : 'bg-gray-100 text-gray-900 mr-auto max-w-[80%]'
+            }`}
           >
-            {message.text}
+            <div
+              role="heading"
+              aria-level={2}
+              aria-label={`Message ${message.id} - ${message.isAgent ? 'Agent Message' : 'Customer Message'}`}
+            >
+              {message.text}
+            </div>
           </div>
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 bg-white border-t p-4 z-20">
+        <div className="container mx-auto">
+          <Button 
+            ref={buttonRef}
+            onClick={onAddMessage}
+            className="w-full md:w-auto"
+          >
+            Add Test Message
+          </Button>
         </div>
-      ))}
-    </div>
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 z-20">
-      <div className="container mx-auto">
-        <Button 
-          ref={buttonRef}
-          onClick={onAddMessage}
-          className="w-full md:w-auto"
-        >
-          Add Test Message
-        </Button>
       </div>
     </div>
-  </div>
-));
+  );
+});
 
 WithAriaLabelContent.displayName = 'WithAriaLabelContent';
 
@@ -72,44 +82,54 @@ type WithoutAriaLabelContentProps = {
   onAddMessage: () => void;
 };
 
-const WithoutAriaLabelContent = memo<WithoutAriaLabelContentProps>(({ messages, buttonRef, onAddMessage }) => (
-  <div className="relative pb-20">
-    <div className="space-y-3 p-4 min-h-[300px]">
-      {messages.length === 0 && (
-        <p className="text-gray-400 text-center py-8">No messages yet. Click the button below to add messages.</p>
-      )}
-      {messages.map((message) => (
-        <div
-          key={message.id}
-          role="alert"
-          className={`p-4 rounded-lg ${
-            message.isAgent
-              ? 'bg-blue-100 text-blue-900 ml-auto max-w-[80%]'
-              : 'bg-gray-100 text-gray-900 mr-auto max-w-[80%]'
-          }`}
-        >
+const WithoutAriaLabelContent = memo<WithoutAriaLabelContentProps>(({ messages, buttonRef, onAddMessage }) => {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Auto scroll to bottom when new message is added
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  return (
+    <div className="relative h-[calc(100vh-300px)]">
+      <div className="space-y-3 p-4 h-full overflow-y-auto pb-24">
+        {messages.length === 0 && (
+          <p className="text-gray-400 text-center py-8">No messages yet. Click the button below to add messages.</p>
+        )}
+        {messages.map((message) => (
           <div
-            role="heading"
-            aria-level={2}
+            key={message.id}
+            role="alert"
+            className={`p-4 rounded-lg ${
+              message.isAgent
+                ? 'bg-blue-100 text-blue-900 ml-auto max-w-[80%]'
+                : 'bg-gray-100 text-gray-900 mr-auto max-w-[80%]'
+            }`}
           >
-            {message.text}
+            <div
+              role="heading"
+              aria-level={2}
+            >
+              {message.text}
+            </div>
           </div>
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 bg-white border-t p-4 z-20">
+        <div className="container mx-auto">
+          <Button 
+            ref={buttonRef}
+            onClick={onAddMessage}
+            className="w-full md:w-auto"
+          >
+            Add Test Message
+          </Button>
         </div>
-      ))}
-    </div>
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 z-20">
-      <div className="container mx-auto">
-        <Button 
-          ref={buttonRef}
-          onClick={onAddMessage}
-          className="w-full md:w-auto"
-        >
-          Add Test Message
-        </Button>
       </div>
     </div>
-  </div>
-));
+  );
+});
 
 WithoutAriaLabelContent.displayName = 'WithoutAriaLabelContent';
 
