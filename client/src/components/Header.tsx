@@ -10,7 +10,8 @@ const Header: React.FC = () => {
     { title: 'VoiceOver Focus Movement Demo', href: '/' },
     { title: 'aria-modal true test', href: '/aria-modal-test' },
     { title: 'tab & radio', href: '/tab-radio' },
-    { title: 'aria-focus-combine', href: '/aria-focus-combine' }
+    { title: 'aria-focus-combine', href: '/aria-focus-combine' },
+    { title: 'role alert demo', href: '/role-alert-demo' }
   ];
 
   return (
