@@ -11,7 +11,8 @@ const Header: React.FC = () => {
     { title: 'aria-modal true test', href: '/aria-modal-test' },
     { title: 'tab & radio', href: '/tab-radio' },
     { title: 'aria-focus-combine', href: '/aria-focus-combine' },
-    { title: 'role alert demo', href: '/role-alert-demo' }
+    { title: 'role alert demo', href: '/role-alert-demo' },
+    { title: 'role switch & aria-pressed', href: '/role-switch-pressed' }
   ];
 
   return (
