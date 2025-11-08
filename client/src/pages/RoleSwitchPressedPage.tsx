@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import PageTitle from '@/components/PageTitle';
-import { Heart, Moon, Sun, Bell, BellOff } from 'lucide-react';
+import { Bell, BellOff, Bookmark, Heart } from 'lucide-react';
 
 // Type definition for RoleSwitchPressedPage props
 type RoleSwitchPressedPageProps = {
@@ -10,7 +9,7 @@ type RoleSwitchPressedPageProps = {
 };
 
 const RoleSwitchPressedPage: React.FC<RoleSwitchPressedPageProps> = ({
-  title = "Role Switch & ARIA-Pressed Test"
+  title = "Role Switch Demo"
 }) => {
   // Update document title when component mounts
   useEffect(() => {
@@ -19,9 +18,8 @@ const RoleSwitchPressedPage: React.FC<RoleSwitchPressedPageProps> = ({
   }, [title]);
 
   // State for aria-pressed examples
-  const [simpleToggle, setSimpleToggle] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(false);
 
   // State for role="switch" examples
   const [switchOn, setSwitchOn] = useState(false);
@@ -45,111 +43,81 @@ const RoleSwitchPressedPage: React.FC<RoleSwitchPressedPageProps> = ({
           </PageTitle>
         </CardHeader>
         <CardContent className="space-y-8">
-          {/* Section 1: ARIA-Pressed Examples */}
-          <div className="border-t pt-6">
+          {/* ARIA-Pressed Examples */}
+          <div className="pt-6">
             <PageTitle level={2} className="mb-4">
-              Section 1: ARIA-Pressed Examples
+              ARIA-Pressed Examples
             </PageTitle>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Simple Toggle Button */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Bookmark Button */}
               <Card>
-                <CardHeader>
-                  <PageTitle level={3} className="text-lg">
-                    1. Simple Toggle Button
-                  </PageTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <Button
-                    aria-pressed={simpleToggle}
-                    onClick={() => handleToggle('Simple Toggle', simpleToggle, setSimpleToggle)}
-                    className={`w-full transition-all ${
-                      simpleToggle
-                        ? 'bg-green-600 hover:bg-green-700'
-                        : 'bg-gray-400 hover:bg-gray-500'
-                    }`}
-                  >
-                    {simpleToggle ? 'ON' : 'OFF'}
-                  </Button>
-                  <code className="text-xs block bg-gray-50 p-2 rounded">
-                    aria-pressed="{simpleToggle ? 'true' : 'false'}"
-                  </code>
+                <CardContent className="pt-6">
+                  <div className="flex flex-col items-center space-y-4">
+                    <PageTitle level={3} className="text-base">
+                      1. Bookmark/Save Button
+                    </PageTitle>
+                    <button
+                      type="button"
+                      onClick={() => handleToggle('Bookmark', isBookmarked, setIsBookmarked)}
+                      aria-pressed={isBookmarked}
+                      aria-label="Bookmark"
+                      className={`p-4 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                        isBookmarked
+                          ? 'bg-blue-100 text-blue-600 hover:bg-blue-200'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      <Bookmark
+                        size={28}
+                        fill={isBookmarked ? "currentColor" : "none"}
+                        strokeWidth={2}
+                      />
+                    </button>
+                    <code className="text-xs block bg-gray-50 p-2 rounded w-full">
+                      aria-pressed="{isBookmarked ? 'true' : 'false'}"
+                    </code>
+                  </div>
                 </CardContent>
               </Card>
 
-              {/* Like/Favorite Button */}
+              {/* Favorite/Like Button */}
               <Card>
-                <CardHeader>
-                  <PageTitle level={3} className="text-lg">
-                    2. Like/Favorite Button
-                  </PageTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <Button
-                    aria-pressed={isFavorite}
-                    aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-                    onClick={() => handleToggle('Favorite', isFavorite, setIsFavorite)}
-                    variant="outline"
-                    className={`w-full transition-all ${
-                      isFavorite
-                        ? 'border-red-500 text-red-600 hover:bg-red-50'
-                        : 'border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    <Heart
-                      className={`mr-2 transition-all ${isFavorite ? 'fill-red-600' : ''}`}
-                      size={20}
-                    />
-                    {isFavorite ? 'Favorited' : 'Add to Favorites'}
-                  </Button>
-                  <code className="text-xs block bg-gray-50 p-2 rounded">
-                    aria-pressed="{isFavorite ? 'true' : 'false'}"
-                  </code>
-                </CardContent>
-              </Card>
-
-              {/* Dark Mode Toggle */}
-              <Card>
-                <CardHeader>
-                  <PageTitle level={3} className="text-lg">
-                    3. Dark Mode Toggle
-                  </PageTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <Button
-                    aria-pressed={isDarkMode}
-                    aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-                    onClick={() => handleToggle('Dark Mode', isDarkMode, setIsDarkMode)}
-                    className={`w-full transition-all ${
-                      isDarkMode
-                        ? 'bg-gray-800 hover:bg-gray-900 text-yellow-300'
-                        : 'bg-yellow-400 hover:bg-yellow-500 text-gray-800'
-                    }`}
-                  >
-                    {isDarkMode ? (
-                      <>
-                        <Moon className="mr-2" size={20} />
-                        Dark Mode
-                      </>
-                    ) : (
-                      <>
-                        <Sun className="mr-2" size={20} />
-                        Light Mode
-                      </>
-                    )}
-                  </Button>
-                  <code className="text-xs block bg-gray-50 p-2 rounded">
-                    aria-pressed="{isDarkMode ? 'true' : 'false'}"
-                  </code>
+                <CardContent className="pt-6">
+                  <div className="flex flex-col items-center space-y-4">
+                    <PageTitle level={3} className="text-base">
+                      2. Favorite/Like Button
+                    </PageTitle>
+                    <button
+                      type="button"
+                      onClick={() => handleToggle('Favorite', isFavorited, setIsFavorited)}
+                      aria-pressed={isFavorited}
+                      aria-label="Favorite"
+                      className={`p-4 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
+                        isFavorited
+                          ? 'bg-red-100 text-red-600 hover:bg-red-200'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      <Heart
+                        size={28}
+                        fill={isFavorited ? "currentColor" : "none"}
+                        strokeWidth={2}
+                      />
+                    </button>
+                    <code className="text-xs block bg-gray-50 p-2 rounded w-full">
+                      aria-pressed="{isFavorited ? 'true' : 'false'}"
+                    </code>
+                  </div>
                 </CardContent>
               </Card>
             </div>
           </div>
 
-          {/* Section 2: Role Switch Examples */}
-          <div className="border-t pt-6">
+          {/* Role Switch Examples */}
+          <div className="pt-6">
             <PageTitle level={2} className="mb-4">
-              Section 2: Role Switch Examples
+              Role Switch Examples
             </PageTitle>
 
             <div className="space-y-4">
