@@ -10,6 +10,7 @@ import TabAndRadioPage from "@/pages/TabAndRadioPage";
 import AriaFocusCombinePage from "@/pages/AriaFocusCombinePage";
 import RoleAlertDemoPage from "@/pages/RoleAlertDemoPage";
 import RoleSwitchPressedPage from "@/pages/RoleSwitchPressedPage";
+import StepIndicatorPage from "@/pages/StepIndicatorPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/aria-focus-combine" component={() => <AriaFocusCombinePage title="Aria Focus Combine Demo" />} />
       <Route path="/role-alert-demo" component={() => <RoleAlertDemoPage title="Role Alert Demo" />} />
       <Route path="/role-switch-pressed" component={() => <RoleSwitchPressedPage title="Role Switch & ARIA-Pressed Test" />} />
+      <Route path="/step-indicator" component={() => <StepIndicatorPage title="Step Indicator Demo" />} />
       <Route component={NotFound} />
     </Switch>
   );
