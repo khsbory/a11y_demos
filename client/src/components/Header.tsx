@@ -13,7 +13,8 @@ const Header: React.FC = () => {
     { title: 'aria-focus-combine', href: '/aria-focus-combine' },
     { title: 'role alert demo', href: '/role-alert-demo' },
     { title: 'role switch & aria-pressed', href: '/role-switch-pressed' },
-    { title: 'step indicator', href: '/step-indicator' }
+    { title: 'step indicator', href: '/step-indicator' },
+    { title: 'cart button demo', href: '/cart-button-demo' }
   ];
 
   return (
