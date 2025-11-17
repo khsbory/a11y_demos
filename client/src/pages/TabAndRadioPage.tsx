@@ -128,7 +128,7 @@ const TabAndRadioPage: React.FC<TabAndRadioPageProps> = ({ title = "Tab & Radio 
           {/* Tab Navigation */}
           <div className="border-t pt-6">
             <PageTitle level={3} className="mb-4">Category Tabs</PageTitle>
-            <div role="tablist" className="flex border-b border-gray-200 mb-6">
+            <div role="tablist" aria-label="Choose a category" className="flex border-b border-gray-200 mb-6">
               <Button
                 ref={fruitsTabRef}
                 role="tab"
