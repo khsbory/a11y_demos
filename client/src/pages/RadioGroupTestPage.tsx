@@ -35,27 +35,36 @@ const RadioGroupTestPage: React.FC<RadioGroupTestPageProps> = ({ title = "Radio 
                 </CardHeader>
                 <CardContent>
                     {/* Requested Structure: UL > LI > DL > DT > DD */}
+                    {/* Requested Structure: UL > LI > DL > DT > DD (Multiple) */}
                     <ul className="list-none p-0 m-0">
                         <li>
-                            <dl className="space-y-4">
-                                <dt className="text-lg font-semibold mb-2">Period Selection</dt>
-                                <dd>
-                                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                        {months.map((month, index) => (
-                                            <label key={month} className="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                                                <input
-                                                    type="radio"
-                                                    name="period"
-                                                    value={month}
-                                                    checked={selectedMonth === month}
-                                                    onChange={(e) => setSelectedMonth(e.target.value)}
-                                                    className="w-4 h-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-                                                />
-                                                <span className="text-gray-700">{month}</span>
+                            <dl className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                <dt className="col-span-full text-lg font-semibold mb-2 flex items-baseline space-x-2">
+                                    <span className="text-gray-900">2025</span>
+                                    <span className="sr-only">Please select a month.</span>
+                                </dt>
+                                {months.map((month, index) => {
+                                    const id = `monthView2025${String(index + 1).padStart(2, '0')}`;
+                                    return (
+                                        <dd key={month} className="m-0">
+                                            <input
+                                                type="radio"
+                                                id={id}
+                                                name="monthCard"
+                                                value={month}
+                                                checked={selectedMonth === month}
+                                                onChange={(e) => setSelectedMonth(e.target.value)}
+                                                className="peer sr-only"
+                                            />
+                                            <label
+                                                htmlFor={id}
+                                                className="flex items-center justify-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 peer-checked:bg-blue-50 peer-checked:border-blue-500 peer-focus:ring-2 peer-focus:ring-blue-500 transition-all"
+                                            >
+                                                <span className="font-medium text-gray-700 peer-checked:text-blue-700">{month}</span>
                                             </label>
-                                        ))}
-                                    </div>
-                                </dd>
+                                        </dd>
+                                    );
+                                })}
                             </dl>
                         </li>
                     </ul>
