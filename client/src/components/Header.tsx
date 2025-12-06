@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b shadow-sm md:hidden">
+    <header className="sticky top-0 z-50 bg-white border-b shadow-sm">
       <div className="container flex items-center justify-between p-4">
         <h1 className="text-xl font-bold text-gray-800">
           Accessibility Demo
@@ -16,7 +16,7 @@ const Header: React.FC = () => {
 
         <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" aria-label="Open Menu">
+            <Button variant="ghost" size="icon" aria-label="Open Menu" className="md:hidden">
               <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
