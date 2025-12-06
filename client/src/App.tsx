@@ -12,6 +12,7 @@ import RoleAlertDemoPage from "@/pages/RoleAlertDemoPage";
 import RoleSwitchPressedPage from "@/pages/RoleSwitchPressedPage";
 import StepIndicatorPage from "@/pages/StepIndicatorPage";
 import CartButtonDemoPage from "@/pages/CartButtonDemoPage";
+import RadioGroupTestPage from "@/pages/RadioGroupTestPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/role-switch-pressed" component={() => <RoleSwitchPressedPage title="Role Switch & ARIA-Pressed Test" />} />
       <Route path="/step-indicator" component={() => <StepIndicatorPage title="Step Indicator Demo" />} />
       <Route path="/cart-button-demo" component={() => <CartButtonDemoPage title="Cart Button Accessibility Demo" />} />
+      <Route path="/radio-group-test" component={() => <RadioGroupTestPage title="Radio Group Test Demo" />} />
       <Route component={NotFound} />
     </Switch>
   );

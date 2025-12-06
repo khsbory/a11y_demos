@@ -14,7 +14,9 @@ const Header: React.FC = () => {
     { title: 'role alert demo', href: '/role-alert-demo' },
     { title: 'role switch & aria-pressed', href: '/role-switch-pressed' },
     { title: 'step indicator', href: '/step-indicator' },
-    { title: 'cart button demo', href: '/cart-button-demo' }
+    { title: 'step indicator', href: '/step-indicator' },
+    { title: 'cart button demo', href: '/cart-button-demo' },
+    { title: 'Radio Group Test Demo', href: '/radio-group-test' }
   ];
 
   return (
@@ -31,9 +33,8 @@ const Header: React.FC = () => {
               <Link
                 key={item.title}
                 href={item.href}
-                className={`font-medium transition-colors hover:text-blue-800 ${
-                  isCurrentPage ? 'text-blue-800 font-semibold' : 'text-blue-600'
-                }`}
+                className={`font-medium transition-colors hover:text-blue-800 ${isCurrentPage ? 'text-blue-800 font-semibold' : 'text-blue-600'
+                  }`}
                 aria-current={isCurrentPage ? 'page' : undefined}
               >
                 {item.title}
@@ -78,9 +79,8 @@ const Header: React.FC = () => {
                 <Link
                   key={item.title}
                   href={item.href}
-                  className={`block font-medium w-full text-center hover:text-blue-800 ${
-                    isCurrentPage ? 'text-blue-800 font-semibold' : 'text-blue-600'
-                  }`}
+                  className={`block font-medium w-full text-center hover:text-blue-800 ${isCurrentPage ? 'text-blue-800 font-semibold' : 'text-blue-600'
+                    }`}
                   aria-current={isCurrentPage ? 'page' : undefined}
                   onClick={() => setIsMenuOpen(false)}
                 >
