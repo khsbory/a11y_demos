@@ -26,6 +26,12 @@ const menuGroups = [
         ]
     },
     {
+        title: "Form Elements",
+        items: [
+            { title: "Dropdown Menu", href: "/dropdown-demo" },
+        ]
+    },
+    {
         title: "UI Components",
         items: [
             { title: "Tab & Radio Demo", href: "/tab-radio" },

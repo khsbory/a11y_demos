@@ -1,7 +1,40 @@
+# Dependencies
 node_modules
+client/node_modules
+
+# Production
 dist
+build
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs
+*.njsproj
+*.sln
+*.sw?
 .DS_Store
+
+# Server specific
 server/public
+# Keep existing ignoring of server/index.ts if it was intentional, but usually dubious.
+# Assuming previous state had a reason, but removing it if it's source.
+# The user asked to check if anything *needs to be added*.
+# Retaining original ignores for safety + adding new ones.
+
 server/index.ts
 vite.config.ts.*
 *.tar.gz
