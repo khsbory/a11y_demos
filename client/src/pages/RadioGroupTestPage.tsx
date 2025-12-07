@@ -34,6 +34,19 @@ const RadioGroupTestPage: React.FC<RadioGroupTestPageProps> = ({ title = "Radio 
                     <PageTitle level={1}>Radio Group Test Demo</PageTitle>
                 </CardHeader>
                 <CardContent>
+                    <div className="mb-6 p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                        <h3 className="font-semibold text-gray-900 mb-2">HTML Structure Description</h3>
+                        <p className="text-gray-700 leading-relaxed">
+                            This radio group is implemented using the following DOM hierarchy:
+                        </p>
+                        <code className="block mt-2 p-2 bg-white border border-gray-200 rounded text-sm text-blue-600 font-mono">
+                            &lt;ul&gt; &gt; &lt;li&gt; &gt; &lt;dl&gt; &gt; &lt;dt&gt; &gt; &lt;dd&gt;
+                        </code>
+                        <p className="mt-2 text-sm text-gray-600">
+                            The <code>DT</code> element contains the group label (Year), and multiple <code>DD</code> elements contain the radio inputs and labels (Months).
+                        </p>
+                    </div>
+
                     {/* Requested Structure: UL > LI > DL > DT > DD */}
                     {/* Requested Structure: UL > LI > DL > DT > DD (Multiple) */}
                     <ul className="list-none p-0 m-0">
