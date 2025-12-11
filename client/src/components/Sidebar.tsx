@@ -18,6 +18,12 @@ const menuGroups = [
         ]
     },
     {
+        title: "Content & Typography",
+        items: [
+            { title: "List Styles", href: "/list-styles" },
+        ]
+    },
+    {
         title: "Focus & ARIA",
         items: [
             { title: "ARIA Modal True Test", href: "/aria-modal-test" },
