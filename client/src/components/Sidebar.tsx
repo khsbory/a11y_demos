@@ -38,6 +38,7 @@ const menuGroups = [
             { title: "Cart Button Demo", href: "/cart-button-demo" },
             { title: "Role Alert Demo", href: "/role-alert-demo" },
             { title: "Radio Group Test Demo", href: "/radio-group-test" },
+            { title: "Card Navigation", href: "/card-navigation" },
         ]
     }
 ];
