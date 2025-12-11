@@ -19,11 +19,18 @@ interface PageTitleProps {
  * @param level - 헤딩 레벨 (1-6, 기본값: 1)
  * @param className - 추가 CSS 클래스
  */
-const PageTitle: React.FC<PageTitleProps> = ({ 
-  children, 
-  level = 1, 
-  className 
+const PageTitle: React.FC<PageTitleProps> = ({
+  children,
+  level = 1,
+  className
 }) => {
+  // 문서 제목 업데이트
+  React.useEffect(() => {
+    if (typeof children === 'string') {
+      document.title = `${children} - Accessibility Demos`;
+    }
+  }, [children]);
+
   // 헤딩 레벨에 따른 기본 스타일 클래스
   const getDefaultStyles = (level: HeadingLevel) => {
     switch (level) {
