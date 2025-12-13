@@ -20,7 +20,7 @@ const DemoPage: React.FC<DemoPageProps> = ({ title = "VoiceOver Focus Movement D
   const tabs = [
     {
       id: 'no-accessibility',
-      label: 'VoiceOver Unsupported',
+      label: 'Default (iOS Fragmentation)',
       content: <ProductList accessibilityLevel="none" />
     },
     {
@@ -45,12 +45,14 @@ const DemoPage: React.FC<DemoPageProps> = ({ title = "VoiceOver Focus Movement D
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-gray-700 leading-relaxed">
-            After enabling VoiceOver in iPhone Settings &gt; Accessibility &gt; VoiceOver, navigate through each tab on this site to observe how focus moves between multiple links in the tab content.
+            This demo illustrates a fragmentation behavior specific to <strong>iOS VoiceOver</strong> (tested on iOS 26.2).
+            Note that this behavior does not occur with VoiceOver on macOS Safari.
+            Please navigate through each tab to observe how focus moves between multiple styled elements.
           </p>
-          
+
           <div className="border-t pt-6">
             <PageTitle level={3} className="mb-4">Demo Area</PageTitle>
-            <TabContainer 
+            <TabContainer
               tabs={tabs}
               defaultActiveTab="no-accessibility"
               onTabChange={(tabId) => console.log('Active tab changed to:', tabId)}

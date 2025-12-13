@@ -11,7 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const menuGroups = [
     {
-        title: "Introduction",
+        title: "Navigation & Flow",
         items: [
             { title: "VoiceOver Focus Movement", href: "/" },
             { title: "Step Indicator Demo", href: "/step-indicator" },
