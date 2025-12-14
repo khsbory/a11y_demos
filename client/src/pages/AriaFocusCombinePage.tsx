@@ -37,8 +37,8 @@ const AriaFocusCombinePage: React.FC<AriaFocusCombinePageProps> = ({ title = "Ar
         <div>
           <PageTitle level={2} className="mb-4">Transaction History (Custom Grid)</PageTitle>
           <p className="mb-4 text-gray-600">
-            This example demonstrates <strong>Screen Reader Navigation Stop</strong> fragmentation on Android TalkBack (tested on Android 16, TalkBack 16.0).
-            Even though these elements are meaningful parts of a single transaction row, TalkBack may stop on each individual cell or text element during linear navigation (swipe),
+            This example demonstrates <strong>Screen Reader Navigation Stop</strong> fragmentation on Android TalkBack (tested on Android 16, TalkBack 16.0) and iOS VoiceOver (tested on iOS 26.2).
+            Even though these elements are meaningful parts of a single transaction row, these screen readers may stop on each individual cell or text element during linear navigation (swipe),
             rather than treating the row as a cohesive unit.
           </p>
           <div className="space-y-2">
@@ -52,8 +52,8 @@ const AriaFocusCombinePage: React.FC<AriaFocusCombinePageProps> = ({ title = "Ar
                 </div>
                 <div className="flex items-center">
                   <span className={`px-2 py-1 rounded text-sm font-medium ${transaction.type === 'deposit'
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-red-100 text-red-800'
+                    ? 'bg-green-100 text-green-800'
+                    : 'bg-red-100 text-red-800'
                     }`}>
                     {transaction.type === 'deposit' ? 'Deposit' : 'Withdrawal'}
                   </span>
@@ -91,8 +91,8 @@ const AriaFocusCombinePage: React.FC<AriaFocusCombinePageProps> = ({ title = "Ar
                 </div>
                 <div className="flex items-center" role="gridcell">
                   <span className={`px-2 py-1 rounded text-sm font-medium ${transaction.type === 'deposit'
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-red-100 text-red-800'
+                    ? 'bg-green-100 text-green-800'
+                    : 'bg-red-100 text-red-800'
                     }`}>
                     {transaction.type === 'deposit' ? 'Deposit' : 'Withdrawal'}
                   </span>
