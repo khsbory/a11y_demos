@@ -45,6 +45,7 @@ const menuGroups = [
             { title: "Role Alert Demo", href: "/role-alert-demo" },
             { title: "Radio Group Test Demo", href: "/radio-group-test" },
             { title: "Card Navigation", href: "/card-navigation" },
+            { title: "Daily Quiz Mission", href: "/daily-quiz" },
         ]
     }
 ];
@@ -56,13 +57,25 @@ type SidebarProps = {
 
 export const SidebarContent: React.FC<{ onLinkClick?: () => void }> = ({ onLinkClick }) => {
     const [location] = useLocation();
+    const [value, setValue] = React.useState("");
+
+    const handleLinkClick = () => {
+        setValue(""); // Collapse accordion
+        onLinkClick?.();
+    };
 
     return (
         <div className="py-4">
             <div className="px-4 mb-4">
                 <h2 className="text-lg font-bold tracking-tight">Documentation</h2>
             </div>
-            <Accordion type="single" collapsible className="w-full px-2">
+            <Accordion
+                type="single"
+                collapsible
+                className="w-full px-2"
+                value={value}
+                onValueChange={setValue}
+            >
                 {menuGroups.map((group, index) => (
                     <AccordionItem value={group.title} key={group.title} className="border-b-0">
                         <AccordionTrigger className="px-2 py-2 text-sm font-semibold hover:no-underline hover:bg-slate-100 rounded-md">
@@ -76,7 +89,7 @@ export const SidebarContent: React.FC<{ onLinkClick?: () => void }> = ({ onLinkC
                                         <Link
                                             key={item.href}
                                             href={item.href}
-                                            onClick={onLinkClick}
+                                            onClick={handleLinkClick}
                                             className={cn(
                                                 "block px-4 py-2 text-sm font-medium rounded-md transition-colors hover:bg-slate-100",
                                                 isActive ? "bg-slate-100 text-blue-700" : "text-slate-600"
