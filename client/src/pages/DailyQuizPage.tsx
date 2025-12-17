@@ -53,7 +53,9 @@ const DailyQuizPage: React.FC = () => {
                                             : 'bg-gray-100 text-gray-300'
                                             }`}
                                     >
-                                        {item.status === 'completed' && <Check className="w-5 h-5" />}
+                                        {item.status === 'completed' && (
+                                            <div className="w-1.5 h-3 border-b-2 border-r-2 border-white transform rotate-45 mb-1" aria-hidden="true" />
+                                        )}
                                         {item.status === 'pending' && <Star className="w-4 h-4 fill-current" />}
                                         {item.status === 'gift' && <Gift className="w-4 h-4" />}
                                     </div>
