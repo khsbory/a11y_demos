@@ -17,6 +17,7 @@ import DropdownDemoPage from "@/pages/DropdownDemoPage";
 import CardNavigationPage from "@/pages/CardNavigationPage";
 import ListStylePage from "@/pages/ListStylePage";
 import DailyQuizPage from "@/pages/DailyQuizPage";
+import HotelRankingPage from "@/pages/HotelRankingPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -34,6 +35,7 @@ function Router() {
       <Route path="/dropdown-demo" component={() => <DropdownDemoPage title="Dropdown Menu Demo" />} />
       <Route path="/list-styles" component={ListStylePage} />
       <Route path="/card-navigation" component={() => <CardNavigationPage />} />
+      <Route path="/hotel-ranking" component={HotelRankingPage} />
       <Route path="/daily-quiz" component={DailyQuizPage} />
       <Route component={NotFound} />
     </Switch>

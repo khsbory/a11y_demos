@@ -24,6 +24,12 @@ const menuGroups = [
         ]
     },
     {
+        title: "Dynamic Content",
+        items: [
+            { title: "Hotel Ranking List", href: "/hotel-ranking" },
+        ]
+    },
+    {
         title: "Focus & ARIA",
         items: [
             { title: "ARIA Modal True Test", href: "/aria-modal-test" },
