@@ -18,7 +18,6 @@ const ImageContainerFocusPage = () => {
                     <div
                         tabIndex={0}
                         className="border-2 border-slate-300 p-4 rounded-xl hover:border-blue-400 focus:ring-4 focus:ring-blue-500 focus:outline-none transition-all cursor-pointer"
-                        aria-label="Coupon Notice Container"
                     >
                         <img
                             src="/images/coupon-notice.png"
