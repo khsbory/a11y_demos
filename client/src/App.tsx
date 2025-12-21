@@ -18,6 +18,7 @@ import CardNavigationPage from "@/pages/CardNavigationPage";
 import ListStylePage from "@/pages/ListStylePage";
 import DailyQuizPage from "@/pages/DailyQuizPage";
 import HotelRankingPage from "@/pages/HotelRankingPage";
+import ImageContainerFocusPage from "@/pages/ImageContainerFocusPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -37,6 +38,7 @@ function Router() {
       <Route path="/card-navigation" component={() => <CardNavigationPage />} />
       <Route path="/hotel-ranking" component={HotelRankingPage} />
       <Route path="/daily-quiz" component={DailyQuizPage} />
+      <Route path="/image-container-focus" component={ImageContainerFocusPage} />
       <Route component={NotFound} />
     </Switch>
   );

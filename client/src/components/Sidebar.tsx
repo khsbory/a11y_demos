@@ -35,6 +35,7 @@ const menuGroups = [
             { title: "ARIA Modal True Test", href: "/aria-modal-test" },
             { title: "ARIA Focus Combine", href: "/aria-focus-combine" },
             { title: "Role Switch & Pressed", href: "/role-switch-pressed" },
+            { title: "Image Container Focus", href: "/image-container-focus" },
         ]
     },
     {
