@@ -20,9 +20,9 @@ interface ProductListProps {
  * @param accessibilityLevel - 접근성 레벨
  * @param className - 추가 CSS 클래스
  */
-const ProductList: React.FC<ProductListProps> = ({ 
-  accessibilityLevel, 
-  className 
+const ProductList: React.FC<ProductListProps> = ({
+  accessibilityLevel,
+  className
 }) => {
   const { data: products, isLoading, error } = useProducts(accessibilityLevel);
 
@@ -76,12 +76,12 @@ const ProductList: React.FC<ProductListProps> = ({
           Current Accessibility Level:
         </h4>
         <p className="text-lg font-semibold text-gray-900">
-          {accessibilityLevel === 'none' && 'VoiceOver Unsupported'}
+          {accessibilityLevel === 'none' && 'Default Behavior (iOS VoiceOver Fragmentation)'}
           {accessibilityLevel === 'role-text' && 'With Role Text'}
           {accessibilityLevel === 'aria-label' && 'With Aria Label'}
         </p>
         <p className="text-sm text-gray-600 mt-1">
-          {accessibilityLevel === 'none' && 'Each element will be read separately by VoiceOver'}
+          {accessibilityLevel === 'none' && 'On iOS VoiceOver, explicitly styled elements are read as separate navigation stops.'}
           {accessibilityLevel === 'role-text' && 'Elements with role="text" will be read as one block'}
           {accessibilityLevel === 'aria-label' && 'All content will be read via aria-label'}
         </p>

@@ -14,6 +14,11 @@ import StepIndicatorPage from "@/pages/StepIndicatorPage";
 import CartButtonDemoPage from "@/pages/CartButtonDemoPage";
 import RadioGroupTestPage from "@/pages/RadioGroupTestPage";
 import DropdownDemoPage from "@/pages/DropdownDemoPage";
+import CardNavigationPage from "@/pages/CardNavigationPage";
+import ListStylePage from "@/pages/ListStylePage";
+import DailyQuizPage from "@/pages/DailyQuizPage";
+import HotelRankingPage from "@/pages/HotelRankingPage";
+import ImageContainerFocusPage from "@/pages/ImageContainerFocusPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -29,6 +34,11 @@ function Router() {
       <Route path="/cart-button-demo" component={() => <CartButtonDemoPage title="Cart Button Accessibility Demo" />} />
       <Route path="/radio-group-test" component={() => <RadioGroupTestPage title="Radio Group Test Demo" />} />
       <Route path="/dropdown-demo" component={() => <DropdownDemoPage title="Dropdown Menu Demo" />} />
+      <Route path="/list-styles" component={ListStylePage} />
+      <Route path="/card-navigation" component={() => <CardNavigationPage />} />
+      <Route path="/hotel-ranking" component={HotelRankingPage} />
+      <Route path="/daily-quiz" component={DailyQuizPage} />
+      <Route path="/image-container-focus" component={ImageContainerFocusPage} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -32,15 +32,18 @@ const AriaFocusCombinePage: React.FC<AriaFocusCombinePageProps> = ({ title = "Ar
   const tabs = [
     {
       id: 'custom',
-      label: 'Custom Grid',
+      label: 'Custom Grid (Fragmentation)',
       content: (
         <div>
           <PageTitle level={2} className="mb-4">Transaction History (Custom Grid)</PageTitle>
-          
-          {/* Transaction Grid */}
+          <p className="mb-4 text-gray-600">
+            This example demonstrates <strong>Screen Reader Navigation Stop</strong> fragmentation on Android TalkBack (tested on Android 16, TalkBack 16.0) and iOS VoiceOver (tested on iOS 26.2).
+            Even though these elements are meaningful parts of a single transaction row, these screen readers may stop on each individual cell or text element during linear navigation (swipe),
+            rather than treating the row as a cohesive unit.
+          </p>
           <div className="space-y-2">
             {transactions.map((transaction) => (
-              <div 
+              <div
                 key={transaction.id}
                 className="grid grid-cols-4 gap-4 p-3 rounded-lg hover:bg-gray-50 border border-gray-100"
               >
@@ -48,17 +51,15 @@ const AriaFocusCombinePage: React.FC<AriaFocusCombinePageProps> = ({ title = "Ar
                   {transaction.date}
                 </div>
                 <div className="flex items-center">
-                  <span className={`px-2 py-1 rounded text-sm font-medium ${
-                    transaction.type === 'deposit' 
-                      ? 'bg-green-100 text-green-800' 
-                      : 'bg-red-100 text-red-800'
-                  }`}>
+                  <span className={`px-2 py-1 rounded text-sm font-medium ${transaction.type === 'deposit'
+                    ? 'bg-green-100 text-green-800'
+                    : 'bg-red-100 text-red-800'
+                    }`}>
                     {transaction.type === 'deposit' ? 'Deposit' : 'Withdrawal'}
                   </span>
                 </div>
-                <div className={`flex items-center justify-end font-medium text-sm ${
-                  transaction.type === 'deposit' ? 'text-green-600' : 'text-red-600'
-                }`}>
+                <div className={`flex items-center justify-end font-medium text-sm ${transaction.type === 'deposit' ? 'text-green-600' : 'text-red-600'
+                  }`}>
                   {transaction.type === 'deposit' ? '+' : '-'}${transaction.amount.toFixed(2)}
                 </div>
                 <div className="flex items-center justify-end font-semibold text-gray-900 bg-gray-50 px-2 py-1 rounded">
@@ -76,11 +77,11 @@ const AriaFocusCombinePage: React.FC<AriaFocusCombinePageProps> = ({ title = "Ar
       content: (
         <div>
           <PageTitle level={2} className="mb-4">Transaction History (ARIA Table)</PageTitle>
-          
+
           {/* Custom Grid Implementation with ARIA Table Roles */}
           <div className="space-y-2" role="table" aria-label="Transaction History">
             {transactions.map((transaction) => (
-              <div 
+              <div
                 key={transaction.id}
                 className="grid grid-cols-4 gap-4 p-3 rounded-lg hover:bg-gray-50 border border-gray-100"
                 role="row"
@@ -89,17 +90,15 @@ const AriaFocusCombinePage: React.FC<AriaFocusCombinePageProps> = ({ title = "Ar
                   {transaction.date}
                 </div>
                 <div className="flex items-center" role="gridcell">
-                  <span className={`px-2 py-1 rounded text-sm font-medium ${
-                    transaction.type === 'deposit' 
-                      ? 'bg-green-100 text-green-800' 
-                      : 'bg-red-100 text-red-800'
-                  }`}>
+                  <span className={`px-2 py-1 rounded text-sm font-medium ${transaction.type === 'deposit'
+                    ? 'bg-green-100 text-green-800'
+                    : 'bg-red-100 text-red-800'
+                    }`}>
                     {transaction.type === 'deposit' ? 'Deposit' : 'Withdrawal'}
                   </span>
                 </div>
-                <div className={`flex items-center justify-end font-medium text-sm ${
-                  transaction.type === 'deposit' ? 'text-green-600' : 'text-red-600'
-                }`} role="gridcell">
+                <div className={`flex items-center justify-end font-medium text-sm ${transaction.type === 'deposit' ? 'text-green-600' : 'text-red-600'
+                  }`} role="gridcell">
                   {transaction.type === 'deposit' ? '+' : '-'}${transaction.amount.toFixed(2)}
                 </div>
                 <div className="flex items-center justify-end font-semibold text-gray-900 bg-gray-50 px-2 py-1 rounded" role="gridcell">
@@ -124,7 +123,7 @@ const AriaFocusCombinePage: React.FC<AriaFocusCombinePageProps> = ({ title = "Ar
         <CardContent className="space-y-6">
           <div className="border-t pt-6">
             <PageTitle level={3} className="mb-4">View Options</PageTitle>
-            <TabContainer 
+            <TabContainer
               tabs={tabs}
               defaultActiveTab="custom"
               onTabChange={(tabId) => console.log('Active tab changed to:', tabId)}
