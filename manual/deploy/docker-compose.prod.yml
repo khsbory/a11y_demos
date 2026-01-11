@@ -1,0 +1,28 @@
+version: '3.8'
+
+networks:
+  consulting-net:
+    external: true
+    name: consulting-net
+
+services:
+  consulting-app:
+    container_name: consulting-app
+    image: khsruru/consulting-app:latest
+    networks:
+      - consulting-net
+    ports:
+      # This will be overridden by deployment script (3001/3002)
+      - "3000:5000"
+    
+    # Load all env vars from .env file
+    env_file:
+      - .env
+
+    environment:
+      # Override DB URL for Production to point to shared DB container
+      - DATABASE_URL=postgresql://user:pass@db:5432/consulting_prod?schema=public
+      - NODE_ENV=production
+      # SMTP vars are loaded from .env automatically
+      
+    restart: always

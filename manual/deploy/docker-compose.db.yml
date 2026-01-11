@@ -1,0 +1,24 @@
+version: '3.8'
+
+# Standard Persistent DB Stack for Project
+
+networks:
+  mynote-net:
+    name: mynote-net
+    driver: bridge
+
+services:
+  postgres-prod:
+    image: postgres:16-alpine
+    container_name: mynote-db
+    environment:
+      POSTGRES_DB: mynote_prod
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - /volume1/docker/projects/my_note/pgdata-prod:/var/lib/postgresql/data
+    networks:
+      - mynote-net
+    restart: always
+    ports:
+      - "5434:5432"
