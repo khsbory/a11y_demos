@@ -18,6 +18,7 @@ import CardNavigationPage from "@/pages/CardNavigationPage";
 import ListStylePage from "@/pages/ListStylePage";
 import DailyQuizPage from "@/pages/DailyQuizPage";
 import HotelRankingPage from "@/pages/HotelRankingPage";
+import ToggleButtonDemoPage from "@/pages/ToggleButtonDemoPage";
 import ImageContainerFocusPage from "@/pages/ImageContainerFocusPage";
 import NotFound from "@/pages/not-found";
 
@@ -39,6 +40,7 @@ function Router() {
       <Route path="/hotel-ranking" component={HotelRankingPage} />
       <Route path="/daily-quiz" component={DailyQuizPage} />
       <Route path="/image-container-focus" component={ImageContainerFocusPage} />
+      <Route path="/toggle-button-demo" component={() => <ToggleButtonDemoPage />} />
       <Route component={NotFound} />
     </Switch>
   );

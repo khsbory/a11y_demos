@@ -48,6 +48,7 @@ const menuGroups = [
         title: "UI Components",
         items: [
             { title: "Tab & Radio Demo", href: "/tab-radio" },
+            { title: "Toggle Button Demo", href: "/toggle-button-demo" },
             { title: "Cart Button Demo", href: "/cart-button-demo" },
             { title: "Role Alert Demo", href: "/role-alert-demo" },
             { title: "Radio Group Test Demo", href: "/radio-group-test" },
